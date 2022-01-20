@@ -16,6 +16,15 @@ public class MarkdownParse {
                 break;
             }
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            while (markdown.charAt(nextCloseBracket - 1) == '\\') {
+                nextCloseBracket = markdown.indexOf("]", nextCloseBracket + 1);
+                if (nextCloseBracket == -1) {
+                    break;
+                }
+            }
+            if (nextCloseBracket == -1) {
+                break;
+            }
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
             if (nextCloseBracket + 1 == openParen) {

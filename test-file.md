@@ -3,4 +3,9 @@
 
 [a] link!](https://something.com)
 
-[a link!](https://otherlink.com)
+[a text!](https://otherlink.com)
+
+[a \] \] \] \] text!](https://somethingelse.com)
+
+[\](google.com)
+

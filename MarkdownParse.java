@@ -15,8 +15,12 @@ public class MarkdownParse {
             if (nextOpenBracket == -1) {
                 break;
             }
+            if (nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) == '!') {
+                currentIndex = nextOpenBracket + 1;
+                continue;
+            }
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            while (markdown.charAt(nextCloseBracket - 1) == '\\') {
+            while (markdown.charAt(nextCloseBracket - 1) == '\\' && markdown.charAt(nextCloseBracket - 2) != '\\') {
                 nextCloseBracket = markdown.indexOf("]", nextCloseBracket + 1);
                 if (nextCloseBracket == -1) {
                     break;

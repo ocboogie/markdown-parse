@@ -21,14 +21,14 @@ public class MarkdownParse {
                 continue;
             }
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
+            if (nextCloseBracket == -1) {
+                break;
+            }
             while (markdown.charAt(nextCloseBracket - 1) == '\\' && markdown.charAt(nextCloseBracket - 2) != '\\') {
                 nextCloseBracket = markdown.indexOf("]", nextCloseBracket + 1);
                 if (nextCloseBracket == -1) {
                     break;
                 }
-            }
-            if (nextCloseBracket == -1) {
-                break;
             }
             int openParen = markdown.indexOf("(", nextCloseBracket);
             if (openParen == -1) {

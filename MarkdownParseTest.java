@@ -55,6 +55,11 @@ public class MarkdownParseTest {
         assertLinks(List.of("last line link should be found"), "testCases/lastLine.md");
     }
 
+    @Test
+    public void testEndStartParentheses() throws IOException {
+        assertLinks(List.of(), "testCases/endStartParentheses.md");
+    }
+
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {
         Path filePath = Path.of(fileName);
         String contents = Files.readString(filePath);

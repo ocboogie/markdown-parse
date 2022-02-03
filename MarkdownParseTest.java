@@ -25,6 +25,7 @@ public class MarkdownParseTest {
         assertLinks(List.of(), "testCases/extraSpace.md");
     }
 
+    @Test
     public void testExtraSpace3() throws IOException {
         assertLinks(List.of(), "blah blah");
     }

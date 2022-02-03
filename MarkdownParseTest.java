@@ -60,6 +60,23 @@ public class MarkdownParseTest {
         assertLinks(List.of(), "testCases/endStartParentheses.md");
     }
 
+    @Test
+    public void testBrackets() throws IOException {
+        assertEquals(List.of("foo(and(bar)"), MarkdownParse.getLinks("[link](<foo(and(bar)>)"));
+    }
+
+    @Test
+    public void testJoesTests() throws IOException {
+        assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file.md");
+        assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file2.md");
+        assertLinks(List.of(), "testCases/test-file3.md");
+        assertLinks(List.of(), "testCases/test-file4.md");
+        assertLinks(List.of(), "testCases/test-file5.md");
+        assertLinks(List.of(), "testCases/test-file6.md");
+        assertLinks(List.of(), "testCases/test-file7.md");
+        assertLinks(List.of("a link on the first line"), "testCases/test-file8.md");
+    }
+
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {
         Path filePath = Path.of(fileName);
         String contents = Files.readString(filePath);

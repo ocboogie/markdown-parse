@@ -21,6 +21,11 @@ public class MarkdownParseTest {
     }
 
     @Test
+    public void testExtraSpace2() throws IOException {
+        assertLinks(List.of(), "testCases/extraSpace.md");
+    }
+
+    @Test
     public void testEscape() throws IOException {
         assertLinks(List.of("https://somethingelse.com"), "testCases/escape.md");
     }
@@ -58,6 +63,11 @@ public class MarkdownParseTest {
     @Test
     public void testEndStartParentheses() throws IOException {
         assertLinks(List.of(), "testCases/endStartParentheses.md");
+    }
+
+    @Test
+    public void testFails() {
+        assertTrue(true);
     }
 
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {

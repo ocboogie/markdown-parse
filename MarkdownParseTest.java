@@ -60,6 +60,11 @@ public class MarkdownParseTest {
         assertLinks(List.of(), "testCases/endStartParentheses.md");
     }
 
+    @Test
+    public void testFails() {
+        assertTrue(false);
+    }
+
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {
         Path filePath = Path.of(fileName);
         String contents = Files.readString(filePath);

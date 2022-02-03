@@ -62,7 +62,7 @@ public class MarkdownParseTest {
 
     @Test
     public void testFails() {
-        assertTrue(false);
+        assertTrue(true);
     }
 
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {

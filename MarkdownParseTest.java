@@ -22,7 +22,7 @@ public class MarkdownParseTest {
 
     @Test
     public void testExtraSpace2() throws IOException {
-        assertLinks(List.of(), "");
+        assertLinks(List.of(), "testCases/extraSpace.md");
     }
 
     @Test

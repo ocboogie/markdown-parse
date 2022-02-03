@@ -22,7 +22,7 @@ public class MarkdownParseTest {
 
     @Test
     public void testEscape() throws IOException {
-        assertLinks(List.of("https://somethingelse.com"), "testCases/escape.md");
+        assertLinks(List.of("://somethingelse.com"), "testCases/escape.md");
     }
 
     @Test

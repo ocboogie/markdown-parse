@@ -21,6 +21,11 @@ public class MarkdownParseTest {
     }
 
     @Test
+    public void testExtraSpace2()) throws IOException {
+        assertLinks(List.of(), "testCases/extraSpace.md");
+    }
+
+    @Test
     public void testEscape() throws IOException {
         assertLinks(List.of("https://somethingelse.com"), "testCases/escape.md");
     }

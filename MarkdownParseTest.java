@@ -72,11 +72,11 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void testBrackets() throws IOException {
-        assertEquals(List.of("foo(and(bar)"), MarkdownParse.getLinks("[link](<foo(and(bar)>)"));
+    public void testNewline() throws IOException {
+        assertEquals(List.of(),
+                MarkdownParse.getLinks("[link](foo\nbar)"));
     }
 
-    @Test
     public void testJoesTests() throws IOException {
         assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file.md");
         assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file2.md");

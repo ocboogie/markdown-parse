@@ -28,6 +28,7 @@ public class MarkdownParseTest {
     @Test
     public void testEscape() throws IOException {
         assertLinks(List.of("https://somethingelse.com"), "testCases/escape.md");
+        System.out.println("change made");
     }
 
     @Test

@@ -72,8 +72,20 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void testFails() {
-        assertTrue(true);
+    public void testNewline() throws IOException {
+        assertEquals(List.of(),
+                MarkdownParse.getLinks("[link](foo\nbar)"));
+    }
+
+    public void testJoesTests() throws IOException {
+        assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file.md");
+        assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file2.md");
+        assertLinks(List.of(), "testCases/test-file3.md");
+        assertLinks(List.of(), "testCases/test-file4.md");
+        assertLinks(List.of(), "testCases/test-file5.md");
+        assertLinks(List.of(), "testCases/test-file6.md");
+        assertLinks(List.of(), "testCases/test-file7.md");
+        assertLinks(List.of("a link on the first line"), "testCases/test-file8.md");
     }
 
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {

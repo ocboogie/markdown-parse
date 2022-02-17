@@ -86,7 +86,7 @@ public class MarkdownParseTest {
         assertLinks(List.of(), "testCases/test-file5.md");
         assertLinks(List.of(), "testCases/test-file6.md");
         assertLinks(List.of(), "testCases/test-file7.md");
-        assertLinks(List.of("a link on the first line"), "testCases/test-file8.md");
+        assertLinks(List.of(), "testCases/test-file8.md");
     }
 
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {

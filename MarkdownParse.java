@@ -5,51 +5,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+import org.commonmark.node.AbstractVisitor;
+import org.commonmark.node.Link;
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+
 public class MarkdownParse {
-    public static ArrayList<String> getLinks(String markdown) {
-        ArrayList<String> toReturn = new ArrayList<>();
-        // find the next [, then find the ], then find the (, then take up to
-        // the next )
-        int currentIndex = 0;
-        while (currentIndex <= markdown.length()) {
-            int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            if (nextOpenBracket == -1) {
-                break;
-            }
-            if (nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) == '!') {
-                currentIndex = nextOpenBracket + 1;
-                continue;
-            }
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            if (nextCloseBracket == -1) {
-                break;
-            }
-            while (markdown.charAt(nextCloseBracket - 1) == '\\' && markdown.charAt(nextCloseBracket - 2) != '\\') {
-                nextCloseBracket = markdown.indexOf("]", nextCloseBracket + 1);
-                if (nextCloseBracket == -1) {
-                    break;
-                }
-            }
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            if (openParen == -1) {
-                break;
-            }
-            
-            int lineBreak = markdown.indexOf("\n", openParen);
-            int closeParen = markdown.indexOf(")", openParen);
-            if(closeParen == -1){
-                break;
-            }
-            if (lineBreak != -1 && lineBreak < closeParen) {
-                currentIndex = closeParen + 1;
-                continue;
-            }
-            if (nextCloseBracket + 1 == openParen) {
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
-            }
-            currentIndex = closeParen + 1;
+    static class LinkVisitor extends AbstractVisitor {
+        ArrayList<String> links;
+
+        LinkVisitor() {
+            this.links = new ArrayList<>();
         }
-        return toReturn;
+
+        @Override
+        public void visit(Link link) {
+            this.links.add(link.getDestination());
+
+            visitChildren(link);
+        }
+    }
+
+    public static ArrayList<String> getLinks(String markdown) {
+        Parser parser = Parser.builder().build();
+        Node node = parser.parse(markdown);
+
+        LinkVisitor visitor = new LinkVisitor();
+        node.accept(visitor);
+        return visitor.links;
     }
 
     public static void main(String[] args) throws IOException {

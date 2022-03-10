@@ -1,1 +1,1 @@
-![this is an image](not a link)
+![this is an image](not-a-link)

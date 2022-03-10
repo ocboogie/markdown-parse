@@ -63,7 +63,7 @@ public class MarkdownParseTest {
 
     @Test
     public void testLastLine() throws IOException {
-        assertLinks(List.of("last line link should be found"), "testCases/lastLine.md");
+        assertLinks(List.of("last-line-link-should-be-found"), "testCases/lastLine.md");
     }
 
     @Test
@@ -77,6 +77,7 @@ public class MarkdownParseTest {
                 MarkdownParse.getLinks("[link](foo\nbar)"));
     }
 
+    @Test
     public void testJoesTests() throws IOException {
         assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file.md");
         assertLinks(List.of("https://something.com", "some-page.html"), "testCases/test-file2.md");
@@ -85,7 +86,7 @@ public class MarkdownParseTest {
         assertLinks(List.of(), "testCases/test-file5.md");
         assertLinks(List.of(), "testCases/test-file6.md");
         assertLinks(List.of(), "testCases/test-file7.md");
-        assertLinks(List.of("a link on the first line"), "testCases/test-file8.md");
+        assertLinks(List.of(), "testCases/test-file8.md");
     }
 
     public static void assertLinks(List<String> expectedLinks, String fileName) throws IOException {
